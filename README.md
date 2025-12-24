@@ -1,2 +1,229 @@
-# Radio1
-Radio 1 is a modern online radio station streaming non-stop music 24/7 with the best hits and great vibes.
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Radio 1 — Online Radio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:'Montserrat',sans-serif;
+    color:#fff;
+    min-height:100vh;
+    background-size:cover;
+    background-position:center;
+    transition:background-image 1s ease;
+}
+.overlay{
+    background:rgba(0,0,0,.65);
+    min-height:100vh;
+}
+
+/* NAV */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 25px;
+}
+.logo{
+    font-size:22px;
+    font-weight:800;
+}
+.logo span{color:#00c6ff}
+nav a{
+    color:#fff;
+    text-decoration:none;
+    margin-left:12px;
+    font-size:14px;
+    opacity:.85;
+}
+nav a:hover{opacity:1}
+
+/* CONTENT */
+.container{
+    display:flex;
+    justify-content:center;
+    padding:40px 15px;
+}
+.card{
+    background:rgba(0,0,0,.55);
+    backdrop-filter:blur(14px);
+    border-radius:24px;
+    padding:35px 30px;
+    width:390px;
+    text-align:center;
+    box-shadow:0 0 60px rgba(0,0,0,.7);
+}
+
+h1{
+    font-size:40px;
+    margin:0;
+}
+h1 span{color:#00c6ff}
+
+.slogan{
+    font-size:14px;
+    opacity:.85;
+    margin:8px 0 18px;
+}
+.desc{
+    font-size:14px;
+    line-height:1.6;
+    margin-bottom:22px;
+}
+
+/* PLAYLIST */
+.playlist{
+    margin-top:25px;
+    text-align:left;
+}
+.playlist b{
+    display:block;
+    text-align:center;
+    margin-bottom:10px;
+}
+
+/* BUTTONS */
+.buttons{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    margin-top:20px;
+}
+.btn{
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);
+    color:#fff;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:12px;
+    cursor:pointer;
+}
+.btn:hover{background:rgba(255,255,255,.2)}
+
+footer{
+    text-align:center;
+    font-size:12px;
+    opacity:.6;
+    padding:20px 0;
+}
+</style>
+</head>
+
+<body id="bg">
+<div class="overlay">
+
+<nav>
+    <div class="logo">Radio <span>1</span></div>
+    <div>
+        <a href="#" onclick="setLang('ru')">RU</a>
+        <a href="#" onclick="setLang('ua')">UA</a>
+        <a href="#" onclick="setLang('en')">EN</a>
+    </div>
+</nav>
+
+<div class="container">
+<div class="card">
+
+<h1>Radio <span>1</span></h1>
+<div class="slogan" id="slogan">Музыка, которая всегда с тобой</div>
+
+<div class="desc" id="desc">
+Radio 1 — современная онлайн-радиостанция.  
+Круглосуточная музыка 24/7 без рекламы и лишнего шума.
+</div>
+
+<!-- PLAYER -->
+<div id="my_player"
+     class="my_player"
+     data-player="energy"
+     data-skin="blue"
+     data-width="260"
+     data-autoplay="1"
+     data-volume="70"
+     data-streamurl="https://myradio24.org/venceremos">
+</div>
+
+<!-- VISUALIZER -->
+<canvas class="my_visualizer" width="320" height="128"
+data-size="64" data-revert="0" data-color="rgb"></canvas>
+
+<br>
+🎧 <b data-myinfo="listeners"></b>
+<span data-myinfo="isonline"></span> —
+<span data-myinfo="kbps"></span> kbps
+<br><br>
+
+<b data-myinfo="song"></b>
+
+<!-- PLAYLIST -->
+<div class="playlist">
+<b>Последние песни</b>
+<div class="my_lastsongs" data-revert="1">
+    <div class="my_lastsonghtml" style="display:none;">
+        <div style="display:flex;gap:8px;align-items:center;margin:4px 0;">
+            <img class="my_lastsong_cover"
+            style="width:42px;height:42px;border-radius:4px;">
+            <span>%songtime%</span>
+            <a href="https://www.youtube.com/results?search_query=%songencode%"
+               target="_blank">%song%</a>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="buttons">
+    <button class="btn" onclick="bg1()">Фон 1</button>
+    <button class="btn" onclick="bg2()">Фон 2</button>
+    <button class="btn" onclick="bg3()">Фон 3</button>
+</div>
+
+</div>
+</div>
+
+<footer>© Radio 1 • Online Radio</footer>
+
+</div>
+
+<script>
+const bg=document.getElementById("bg");
+bg.style.backgroundImage="url('https://images.unsplash.com/photo-1511379938547-c1f69419868d')";
+
+function bg1(){bg.style.backgroundImage="url('https://images.unsplash.com/photo-1511379938547-c1f69419868d')";}
+function bg2(){bg.style.backgroundImage="url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4')";}
+function bg3(){bg.style.backgroundImage="url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f')";}
+
+const lang={
+ru:{
+slogan:"Музыка, которая всегда с тобой",
+desc:"Radio 1 — современная онлайн-радиостанция. Круглосуточная музыка 24/7 без рекламы."
+},
+ua:{
+slogan:"Музика, яка завжди з тобою",
+desc:"Radio 1 — сучасна онлайн-радіостанція. Цілодобова музика 24/7 без реклами."
+},
+en:{
+slogan:"Music that stays with you",
+desc:"Radio 1 is a modern online radio station. 24/7 music without ads."
+}
+};
+
+function setLang(l){
+document.getElementById("slogan").innerText=lang[l].slogan;
+document.getElementById("desc").innerText=lang[l].desc;
+}
+</script>
+
+<script src="https://myradio24.com/player/player.js?v3.31"
+data-radio="venceremos"
+data-interval="15"
+data-vmid="0"
+data-lang="ru"></script>
+
+</body>
+</html>
